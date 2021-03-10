@@ -8,6 +8,34 @@ all the dots and staying alive and ghosts win the game by eating pacman. Part 1 
 add three algorithms, one being a more advanced evaluation function that uses the current state, and 
 the other two building on top of the minimax algorithm.
 
+--------------------------------Question 1: Reflex Agent--------------------------------------------
+This question asks to implement a simple reflex agent which will choose the best path without thinking
+about the future too much. The implementation calculates up the manhatten distances to all pieces of food
+which then gets normalized by taking that value over 1. This normalized value then gets added to my score.
+This process is continued for each piece of food. After the food is calculated, the manhattan distances to
+the ghosts is calculated, this is the same process as above except the value is subracted from my score
+because it is not desirable to go towards ghosts. This section has a special case where if the next turn
+results in you hitting the ghost, the value is set to -infinity which is the most undesirable value. Once
+this has ran, there is a value for my score which then gets returned after being added to the acutal game
+score. 
+This implementation occasionally runs into an issue where pacman will thrash but the constant movement
+of the ghosts will push it out of the thrashing state.
+
+--------------------------------Question 2: Minimax-----------------------------------------
+This question asks to implement a minimax function. This is where you calculate the best path for each 
+agent. Pacman wants to maximize the score and the ghosts want to minimze the score. The implementation 
+starts off with pacman as the agent which then begins the call stack on the minimax function. The starting
+piece calls all the successors of pacman and passes that to the minimax function which then determines
+if the agent is still pacman or a ghost. If it is pacman, the max value of the successors is taken and if
+it is a ghost the minimum value of the successors is taken. Each iteration of minimax checks if the end
+state is reached, which can happen if the depth is reached or the game is won or lost, when this happens
+the score gets retunred and goes up the call stack. When the last ghost has been examined, the agent gets 
+reset to pacman and the depth gets incremented.
+In previous attempts at this problem I got very close to the solution but I was trying to have maxValue and
+minValue as separate functions which I would pass to and get the max or min successor, but this was returning
+the value and not the direction which made my program stop there. I had a very similar method of incrementing
+the depth and agent in my first attempt except it was not as elegant. 
+
 --------------------------------Question 3: Alpha-Beta Pruning--------------------------------------------
 This question asks to implement a minimax solution with alpha beta pruning added. This works the same
 as minimax except it adds additional efficiency because the subtrees that do not need to be explored are not,
