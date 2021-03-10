@@ -3,7 +3,7 @@
 This project includes three parts of Berkeley's Pac-Man project for an introduction to artificial intelligence. 
 
 
-Part one: Search
+Part one: Search\n
 
 This explores different search algorithms to help Pac-Man find an exit. The search algorithms include depth-first, breadth-first, greedy, uniform cost and A* search.
 
